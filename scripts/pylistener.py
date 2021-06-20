@@ -2,8 +2,11 @@
 
 import time
 import math
-from moteus_fdcanusb.moteusController import Controller
-from moteus_fdcanusb.moteusReg import MoteusReg
+
+from aoyun_fdcanusb.moteusController import Controller
+from aoyun_fdcanusb.moteusReg import MoteusReg
+
+import rospy
 import rospy
 from std_msgs.msg import String
 from sensor_msgs.msg import JointState 
@@ -21,10 +24,8 @@ def save_position(data):
 
 def listener():
     rospy.init_node('ayspot_a1_hw_pylistener', anonymous=True)
-    
     add_thread = threading.Thread(target = thread_job)
     add_thread.start()
-
     rospy.Subscriber('/joint_states', JointState, save_position, queue_size=1)
     rospy.sleep(1)
 

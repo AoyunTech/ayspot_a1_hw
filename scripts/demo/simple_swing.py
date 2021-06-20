@@ -46,9 +46,9 @@ async def main():
 
     while True:
         await servo_test1.stop()
-        await servo_test1.move_to_pos(0.3, 25)
+        await servo_test1.move_to_pos(0.2, 25)
         await servo_test1.stop()
-        await servo_test1.move_to_pos(-0.3, 25)
+        await servo_test1.move_to_pos(0.5, 25)
 
 if __name__ == '__main__':
     asyncio.run(main())

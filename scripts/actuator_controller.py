@@ -2,8 +2,8 @@
 
 import time
 import math
-from moteus_fdcanusb.moteusController import Controller
-from moteus_fdcanusb.moteusReg import MoteusReg
+from aoyun_fdcanusb.moteusController import Controller
+from aoyun_fdcanusb.moteusReg import MoteusReg
 import rospy
 from std_msgs.msg import String
 from sensor_msgs.msg import JointState 
