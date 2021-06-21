@@ -18,9 +18,9 @@ def thread_job():
 positions = [0 for _ in range(12)]
 def save_position(data):
     global positions
-    positions[0] = data.position[0]
-    positions[1] = data.position[1]
-    positions[2] = data.position[2]
+    positions[0] = data.position[0] / math.pi
+    positions[1] = data.position[1] / math.pi
+    positions[2] = data.position[2] / math.pi
 
 def listener():
     rospy.init_node('ayspot_a1_hw_pylistener', anonymous=True)
