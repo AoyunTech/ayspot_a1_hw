@@ -15,7 +15,7 @@ def thread_job():
 positions = [0 for _ in range(12)]
 def save_position(data):
     global positions
-    for i in range(3):
+    for i in range(12):
         positions[i] = (data.position[i] / math.pi)
 #        rospy.loginfo('positions[%d]: %f; data.position[%d] %f', i, positions[i], i, data.position[i])
 
@@ -28,13 +28,12 @@ def listener():
 
 def main():
     global positions
-    controller_hip_lf   = Controller(controller_ID = 3)
-    controller_thigh_lf = Controller(controller_ID = 1)
-    controller_shank_lf = Controller(controller_ID = 2)
-
+#    controller_hip_lf   = Controller(controller_ID = 3)
+#    controller_thigh_lf = Controller(controller_ID = 1)
+#    controller_shank_lf = Controller(controller_ID = 2)
 #    controller_hip_rf   = Controller(controller_ID = 6)
-#    controller_thigh_rf = Controller(controller_ID = 4)
-#    controller_shank_rf = Controller(controller_ID = 5)
+    controller_thigh_rf = Controller(controller_ID = 4)
+    controller_shank_rf = Controller(controller_ID = 5)
 #    controller_hip_lh   = Controller(controller_ID = 9)
 #    controller_thigh_lh = Controller(controller_ID = 7)
 #    controller_shank_lh = Controller(controller_ID = 8)
@@ -47,13 +46,12 @@ def main():
     jump_torque = 2
     freq = 200
     while True:
-        hip_lf   = positions[0]
-        thigh_lf = positions[1]
-        shank_lf = positions[2]
-
+#        hip_lf   = positions[0]
+#        thigh_lf = positions[1]
+#        shank_lf = positions[2]
 #        hip_rf   = positions[3]
-#        thigh_rf = positions[4]
-#        shank_rf = positions[5]
+        thigh_rf = positions[4] - (0.25214188/2.0)
+        shank_rf = positions[5]
 #        hip_lh   = positions[6]
 #        thigh_lh = positions[7]
 #        shank_lh = positions[8]
@@ -64,16 +62,16 @@ def main():
         freq_measure_time = time.time()
         phase = (time.time()*1) % (2. *math.pi)
 
-        controller_hip_lf.set_position(position=hip_lf, max_torque=jump_torque, kd_scale=5, get_data=True, print_data=False)
-        controller_thigh_lf.set_position(position=thigh_lf, max_torque=jump_torque, kd_scale=5, get_data=True, print_data=False)
-        controller_shank_lf.set_position(position=shank_lf, max_torque=jump_torque, kd_scale=5, get_data=True, print_data=False)
+#        controller_hip_lf.set_position(position=hip_lf, max_torque=jump_torque, kd_scale=5, get_data=True, print_data=False)
+#        controller_thigh_lf.set_position(position=thigh_lf, max_torque=jump_torque, kd_scale=5, get_data=True, print_data=False)
+#        controller_shank_lf.set_position(position=shank_lf, max_torque=jump_torque, kd_scale=5, get_data=True, print_data=False)
 
-#        controller_hip_rf.set_position(position=positions[3], max_torque=jump_torque, kd_scale=5, get_data=True, print_data=False)
-#        controller_thigh_rf.set_position(position=positions[4], max_torque=jump_torque, kd_scale=5, get_data=True, print_data=False)
-#        controller_shank_rf.set_position(position=positions[5], max_torque=jump_torque, kd_scale=5, get_data=True, print_data=False)
-#        controller_hip_lh.set_position(position=positions[6], max_torque=jump_torque, kd_scale=5, get_data=True, print_data=False)
-#        controller_thigh_lh.set_position(position=positions[7], max_torque=jump_torque, kd_scale=5, get_data=True, print_data=False)
-#        controller_shank_lh.set_position(position=positions[8], max_torque=jump_torque, kd_scale=5, get_data=True, print_data=False)
+#        controller_hip_rf.set_position(position=hip_rf, max_torque=jump_torque, kd_scale=5, get_data=True, print_data=False)
+        controller_thigh_rf.set_position(position=thigh_rf, max_torque=jump_torque, kd_scale=5, get_data=True, print_data=False)
+        controller_shank_rf.set_position(position=shank_rf, max_torque=jump_torque, kd_scale=5, get_data=True, print_data=False)
+#        controller_hip_lh.set_position(position=hip_lh, max_torque=jump_torque, kd_scale=5, get_data=True, print_data=False)
+#        controller_thigh_lh.set_position(position=thigh_lh, max_torque=jump_torque, kd_scale=5, get_data=True, print_data=False)
+#        controller_shank_lh.set_position(position=shank_lh, max_torque=jump_torque, kd_scale=5, get_data=True, print_data=False)
 #        controller_hip_rh.set_position(position=positions[9], max_torque=jump_torque, kd_scale=5, get_data=True, print_data=False)
 #        controller_thigh_rh.set_position(position=positions[10], max_torque=jump_torque, kd_scale=5, get_data=True, print_data=False)
 #        controller_shank_rh.set_position(position=positions[11], max_torque=jump_torque, kd_scale=5, get_data=True, print_data=False)
